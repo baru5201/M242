@@ -1,0 +1,2 @@
+BUILD\K64F\ARMC6\HTS221\HTS221_driver.o: HTS221\HTS221_driver.c \
+  BUILD\K64F\ARMC6\mbed_config.h HTS221\HTS221_driver.h

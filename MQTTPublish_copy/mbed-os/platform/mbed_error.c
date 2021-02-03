@@ -45,20 +45,19 @@ static void print_error_report(const mbed_error_ctx *ctx, const char *, const ch
 #define ERROR_REPORT(ctx, error_msg, error_filename, error_line) ((void) 0)
 #endif
 
-static core_util_atomic_flag error_in_progress = CORE_UTIL_ATOMIC_FLAG_INIT;
+static bool error_in_progress;
 static core_util_atomic_flag halt_in_progress = CORE_UTIL_ATOMIC_FLAG_INIT;
 static int error_count = 0;
 static mbed_error_ctx first_error_ctx = {0};
+
+static mbed_error_ctx last_error_ctx = {0};
+static mbed_error_hook_t error_hook = NULL;
+static mbed_error_status_t handle_error(mbed_error_status_t error_status, unsigned int error_value, const char *filename, int line_number, void *caller);
 
 #if MBED_CONF_PLATFORM_CRASH_CAPTURE_ENABLED
 //Global for populating the context in exception handler
 static mbed_error_ctx *const report_error_ctx = (mbed_error_ctx *)(ERROR_CONTEXT_LOCATION);
 static bool is_reboot_error_valid = false;
-#endif
-
-static mbed_error_ctx last_error_ctx = {0};
-static mbed_error_hook_t error_hook = NULL;
-static mbed_error_status_t handle_error(mbed_error_status_t error_status, unsigned int error_value, const char *filename, int line_number, void *caller);
 
 //Helper function to calculate CRC
 //NOTE: It would have been better to use MbedCRC implementation. But
@@ -89,6 +88,7 @@ static unsigned int compute_crc32(const void *data, int datalen)
 
     return crc;
 }
+#endif
 
 //Helper function to halt the system
 static MBED_NORETURN void mbed_halt_system(void)
@@ -115,7 +115,7 @@ static MBED_NORETURN void mbed_halt_system(void)
 WEAK MBED_NORETURN void error(const char *format, ...)
 {
     // Prevent recursion if error is called again during store+print attempt
-    if (!core_util_atomic_flag_test_and_set(&error_in_progress)) {
+    if (!core_util_atomic_exchange_bool(&error_in_progress, true)) {
         handle_error(MBED_ERROR_UNKNOWN, 0, NULL, 0, MBED_CALLER_ADDR());
         ERROR_REPORT(&last_error_ctx, "Fatal Run-time error", NULL, 0);
 
@@ -256,6 +256,12 @@ int mbed_get_error_count(void)
     return error_count;
 }
 
+//Reads the fatal error occurred" flag
+bool mbed_get_error_in_progress(void)
+{
+    return core_util_atomic_load_bool(&error_in_progress);
+}
+
 //Sets a non-fatal error
 mbed_error_status_t mbed_warning(mbed_error_status_t error_status, const char *error_msg, unsigned int error_value, const char *filename, int line_number)
 {
@@ -266,7 +272,7 @@ mbed_error_status_t mbed_warning(mbed_error_status_t error_status, const char *e
 WEAK MBED_NORETURN mbed_error_status_t mbed_error(mbed_error_status_t error_status, const char *error_msg, unsigned int error_value, const char *filename, int line_number)
 {
     // Prevent recursion if error is called again during store+print attempt
-    if (!core_util_atomic_flag_test_and_set(&error_in_progress)) {
+    if (!core_util_atomic_exchange_bool(&error_in_progress, true)) {
         //set the error reported
         (void) handle_error(error_status, error_value, filename, line_number, MBED_CALLER_ADDR());
 
@@ -432,7 +438,7 @@ mbed_error_status_t mbed_clear_all_errors(void)
     return status;
 }
 
-static const char *name_or_unnamed(const char *name)
+static inline const char *name_or_unnamed(const char *name)
 {
     return name ? name : "<unnamed>";
 }
@@ -547,7 +553,7 @@ static void print_error_report(const mbed_error_ctx *ctx, const char *error_msg,
 #else
     mbed_stats_sys_t sys_stats;
     mbed_stats_sys_get(&sys_stats);
-    mbed_error_printf("\nFor more info, visit: https://mbed.com/s/error?error=0x%08X&osver=%d&core=0x%08X&comp=%d&ver=%d&tgt=" GET_TARGET_NAME(TARGET_NAME), ctx->error_status, sys_stats.os_version, sys_stats.cpu_id, sys_stats.compiler_id, sys_stats.compiler_version);
+    mbed_error_printf("\nFor more info, visit: https://mbed.com/s/error?error=0x%08X&osver=%" PRId32 "&core=0x%08" PRIX32 "&comp=%d&ver=%" PRIu32 "&tgt=" GET_TARGET_NAME(TARGET_NAME), ctx->error_status, sys_stats.os_version, sys_stats.cpu_id, sys_stats.compiler_id, sys_stats.compiler_version);
 #endif
     mbed_error_printf("\n-- MbedOS Error Info --\n");
 }

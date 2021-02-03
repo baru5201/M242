@@ -1,0 +1,274 @@
+[
+    {
+        "module": "HTS221\\HTS221Sensor.o",
+        "size": {
+            ".text": 1042,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 1042,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "HTS221\\HTS221_driver.o",
+        "size": {
+            ".text": 867,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 867,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "IoTKit\\Adafruit_GFX",
+        "size": {
+            ".text": 3093,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 3093,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "IoTKit\\Motor",
+        "size": {
+            ".text": 170,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 170,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "IoTKit\\wifi-ism43362",
+        "size": {
+            ".text": 162,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 162,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "MFRC522\\MFRC522.o",
+        "size": {
+            ".text": 382,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 382,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "MQTT\\MQTTPacket",
+        "size": {
+            ".text": 1782,
+            ".data": 0,
+            ".bss": 4,
+            ".text-delta": 1782,
+            ".data-delta": 0,
+            ".bss-delta": 4
+        }
+    },
+    {
+        "module": "QEI\\QEI.o",
+        "size": {
+            ".text": 500,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 500,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "[lib]\\c_w.l",
+        "size": {
+            ".text": 17751,
+            ".data": 16,
+            ".bss": 348,
+            ".text-delta": 17751,
+            ".data-delta": 16,
+            ".bss-delta": 348
+        }
+    },
+    {
+        "module": "[lib]\\fz_wm.l",
+        "size": {
+            ".text": 1538,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 1538,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "[lib]\\libcpp_w.l",
+        "size": {
+            ".text": 1,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 1,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "[lib]\\libcppabi_w.l",
+        "size": {
+            ".text": 44,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 44,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "[lib]\\m_wm.l",
+        "size": {
+            ".text": 746,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 746,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "anon$$obj.o",
+        "size": {
+            ".text": 32,
+            ".data": 0,
+            ".bss": 182080,
+            ".text-delta": 32,
+            ".data-delta": 0,
+            ".bss-delta": 182080
+        }
+    },
+    {
+        "module": "main.o",
+        "size": {
+            ".text": 5271,
+            ".data": 12,
+            ".bss": 2360,
+            ".text-delta": 5271,
+            ".data-delta": 12,
+            ".bss-delta": 2360
+        }
+    },
+    {
+        "module": "mbed-os\\cmsis",
+        "size": {
+            ".text": 992,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 992,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "mbed-os\\components",
+        "size": {
+            ".text": 13221,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 13221,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "mbed-os\\drivers",
+        "size": {
+            ".text": 5111,
+            ".data": 0,
+            ".bss": 1184,
+            ".text-delta": 5111,
+            ".data-delta": 0,
+            ".bss-delta": 1184
+        }
+    },
+    {
+        "module": "mbed-os\\events",
+        "size": {
+            ".text": 1949,
+            ".data": 0,
+            ".bss": 3108,
+            ".text-delta": 1949,
+            ".data-delta": 0,
+            ".bss-delta": 3108
+        }
+    },
+    {
+        "module": "mbed-os\\features",
+        "size": {
+            ".text": 12493,
+            ".data": 99,
+            ".bss": 345,
+            ".text-delta": 12493,
+            ".data-delta": 99,
+            ".bss-delta": 345
+        }
+    },
+    {
+        "module": "mbed-os\\hal",
+        "size": {
+            ".text": 1698,
+            ".data": 4,
+            ".bss": 66,
+            ".text-delta": 1698,
+            ".data-delta": 4,
+            ".bss-delta": 66
+        }
+    },
+    {
+        "module": "mbed-os\\platform",
+        "size": {
+            ".text": 8134,
+            ".data": 64,
+            ".bss": 301,
+            ".text-delta": 8134,
+            ".data-delta": 64,
+            ".bss-delta": 301
+        }
+    },
+    {
+        "module": "mbed-os\\rtos",
+        "size": {
+            ".text": 13241,
+            ".data": 168,
+            ".bss": 6634,
+            ".text-delta": 13241,
+            ".data-delta": 168,
+            ".bss-delta": 6634
+        }
+    },
+    {
+        "module": "mbed-os\\targets",
+        "size": {
+            ".text": 25826,
+            ".data": 12,
+            ".bss": 1012,
+            ".text-delta": 25826,
+            ".data-delta": 12,
+            ".bss-delta": 1012
+        }
+    },
+    {
+        "summary": {
+            "static_ram": 197817,
+            "static_ram_delta": 197817,
+            "total_flash": 116421,
+            "total_flash_delta": 116421
+        }
+    }
+]

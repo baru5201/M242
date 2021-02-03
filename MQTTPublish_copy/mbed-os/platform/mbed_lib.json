@@ -183,6 +183,10 @@
             "crash-capture-enabled": true,
             "fatal-error-auto-reboot-enabled": true
         },
+        "NUMAKER_PFM_NUC472": {
+            "crash-capture-enabled": true,
+            "fatal-error-auto-reboot-enabled": true
+        },
         "NRF52840_DK": {
             "crash-capture-enabled": true,
             "fatal-error-auto-reboot-enabled": true
@@ -192,6 +196,10 @@
             "fatal-error-auto-reboot-enabled": true
         },
         "NUCLEO_F411RE": {
+            "crash-capture-enabled": true,
+            "fatal-error-auto-reboot-enabled": true
+        },
+        "DISCO_F407VG": {
             "crash-capture-enabled": true,
             "fatal-error-auto-reboot-enabled": true
         }

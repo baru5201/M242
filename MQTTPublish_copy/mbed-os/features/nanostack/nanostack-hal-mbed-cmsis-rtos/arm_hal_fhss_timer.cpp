@@ -1,18 +1,20 @@
 /*
- * Copyright (c) 2018 ARM Limited. All rights reserved.
+ * Copyright (c) 2018-2019, Arm Limited and affiliates.
  * SPDX-License-Identifier: Apache-2.0
- * Licensed under the Apache License, Version 2.0 (the License); you may
- * not use this file except in compliance with the License.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an AS IS BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #include "ns_types.h"
 #include "fhss_api.h"
 #include "fhss_config.h"
@@ -21,7 +23,7 @@
 #include "platform/arm_hal_interrupt.h"
 #include <Timer.h>
 #include "equeue.h"
-#include "EventQueue.h"
+#include "events/EventQueue.h"
 #include "mbed_shared_queues.h"
 #include "Timeout.h"
 
@@ -69,7 +71,7 @@ static fhss_timeout_s *allocate_timeout(void)
 {
     for (int i = 0; i < NUMBER_OF_SIMULTANEOUS_TIMEOUTS; i++) {
         if (fhss_timeout[i].fhss_timer_callback == NULL) {
-            memset(&fhss_timeout[i], sizeof(fhss_timeout_s), 0);
+            memset(&fhss_timeout[i], 0, sizeof(fhss_timeout_s));
             return &fhss_timeout[i];
         }
     }
@@ -169,3 +171,4 @@ fhss_timer_t fhss_functions = {
     .fhss_get_timestamp = platform_fhss_timestamp_read,
     .fhss_resolution_divider = 1
 };
+
